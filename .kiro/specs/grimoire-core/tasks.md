@@ -22,7 +22,7 @@ This implementation plan breaks down the Grimoire Core feature into discrete cod
 
 ### Phase 0: Project Automation
 
-- [ ] 0.1 Create spell language steering file
+- [x] 0.1 Create spell language steering file
   - Create `.kiro/steering/spell-language.md`
   - Document the complete Spell_Language grammar (copy from design.md)
   - Include examples of all statement types
@@ -30,7 +30,7 @@ This implementation plan breaks down the Grimoire Core feature into discrete cod
   - Document string escape sequences
   - _Requirements: 4.1, 4.2, 4.3_
 
-- [ ] 0.2 Define development hooks
+- [x] 0.2 Define development hooks
   - Create `.kiro/hooks/parser-tests.json`:
     - Trigger: PostFileSave
     - Matcher: `parser|grammar|tokenizer` (matches parser/grammar/tokenizer file paths)

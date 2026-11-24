@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Run Parser Tests",
+      "trigger": "PostFileSave",
+      "matcher": "parser|grammar|tokenizer",
+      "action": {
+        "type": "command",
+        "command": "npm test -- --run --reporter=verbose --testNamePattern=\"(parser|grammar|tokenizer|round-trip)\""
+      }
+    }
+  ]
+}

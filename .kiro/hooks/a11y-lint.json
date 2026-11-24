@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Run Accessibility Linter",
+      "trigger": "PostFileSave",
+      "matcher": "ui/.*\\.(tsx|jsx)",
+      "action": {
+        "type": "command",
+        "command": "npx eslint --ext .tsx,.jsx --plugin jsx-a11y --no-ignore \"$KIRO_FILE_PATH\""
+      }
+    }
+  ]
+}

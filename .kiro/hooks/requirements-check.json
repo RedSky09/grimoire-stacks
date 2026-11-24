@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Verify Requirement IDs",
+      "trigger": "PostFileSave",
+      "matcher": "requirements\\.md|design\\.md",
+      "action": {
+        "type": "command",
+        "command": "pwsh -NoProfile -Command \"$tasksFile = Join-Path (Split-Path $env:KIRO_FILE_PATH) 'tasks.md'; $reqFile = Join-Path (Split-Path $env:KIRO_FILE_PATH) 'requirements.md'; if (!(Test-Path $tasksFile) -or !(Test-Path $reqFile)) { exit 0 }; $tasks = Get-Content $tasksFile -Raw; $reqs = Get-Content $reqFile -Raw; $reqIds = [regex]::Matches($tasks, '_Requirements: ([0-9., *]+)_') | ForEach-Object { $_.Groups[1].Value -split '[, ]+' } | Where-Object { $_ -match '^[0-9]+' }; $missing = @(); foreach ($id in $reqIds) { if ($reqs -notmatch \"Requirement $id:\") { $missing += $id } }; if ($missing.Count -gt 0) { Write-Error \\\"Missing requirement IDs in requirements.md: $($missing -join ', ')\\\"; exit 2 }; Write-Output 'All requirement IDs verified'\""
+      }
+    }
+  ]
+}
